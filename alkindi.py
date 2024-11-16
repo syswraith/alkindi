@@ -24,6 +24,7 @@ def frequency_analysis(ciphertext_cleaned):
     frequency_table = {}
     for x in charlist: frequency_table.update({x:0})
     for x in ciphertext_cleaned: frequency_table[x] += 1
+    frequency_table = dict(sorted(frequency_table.items(), key=lambda item: item[1], reverse=True))
     return frequency_table
 
 def frequency_of_letters_EN():
@@ -56,7 +57,24 @@ def frequency_of_letters_EN():
     'z': 0.1
     }
     letter_frequency_sorted = {}
-    for x in sorted(letter_frequency_table.items(), key=lambda kv: (kv[1], kv[0]), reverse=True): 
-        letter_frequency_sorted.update({x[0]:x[1]})
+    for x in sorted(letter_frequency_table.items(), key=lambda item: (item[1], item[0]), reverse=True): letter_frequency_sorted.update({x[0]:x[1]})
     return letter_frequency_sorted
 
+def character_analysis(clear_text):
+    alphanum_text = re.sub("['\";:.,’“ \n]", '', clear_text)
+    alphanum_frequency_table = frequency_analysis(alphanum_text)
+    frequency_of_letters_table = frequency_of_letters_EN()
+    average = int((len(frequency_of_letters_table) + len(alphanum_frequency_table)) / 2) - 2
+    guessed_dict = {}
+    for x in range(average): guessed_dict.update({list(alphanum_frequency_table)[x]:list(frequency_of_letters_table)[x]})
+    return guessed_dict
+
+def main(ciphertext): 
+    clean_text = ciphertext_clean(ciphertext)
+    character_analysis_table = character_analysis(clean_text)
+    decrypt_string = ''
+    for x in clean_text: 
+        if x in character_analysis_table.keys():
+            decrypt_string+= character_analysis_table[x]
+
+main(ciphertext)
