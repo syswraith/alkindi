@@ -3,9 +3,10 @@
 alkindi.py, a script to break substitution ciphers
 
 ### Functionality implementation overview:
-- [ ] Ready the ciphertext
-- [ ] Make frequency analysis table
+- [x] Ready the ciphertext
+- [x] Make frequency analysis table
 - [ ] Character analysis
+  - [x] Most used characters (e,t,a)
   - [ ] Single characters
   - [ ] Repeating characters
   - [ ] Commonly occuring characters (th, qu)
