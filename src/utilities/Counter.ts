@@ -34,6 +34,3 @@ export default class Counter {
     return new Map(this.percentMap);
   }
 }
-
-let counter = new Counter("hello");
-console.log(counter.getPercentMap());
