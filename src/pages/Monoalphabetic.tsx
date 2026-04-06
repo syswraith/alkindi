@@ -1,9 +1,18 @@
-import { useState } from "react";
+import CiphertextPlaintext from "../components/monoalphabetic/ciphertext_plaintext.tsx";
 
 export default function Monoalphabetic() {
   return (
     <>
-      <h1>Monoalphabetic</h1>
+      {/* Encode decode button */}
+
+      {/* Ciphertext Plaintext */}
+      <CiphertextPlaintext />
+
+      {/* Frequency Chart*/}
+
+      {/* Keymap */}
+
+      {/* Find and Replace */}
     </>
   );
 }
