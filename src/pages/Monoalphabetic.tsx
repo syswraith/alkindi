@@ -3,6 +3,8 @@ import Keymap from "../components/monoalphabetic/keymap.tsx";
 import { useState, useMemo } from "react";
 import Counter from "../utilities/Counter.ts";
 import FrequencyChart from "../components/monoalphabetic/frequency_chart.tsx";
+import { ENGLISH_FREQUENCY } from "../utilities/EnglishFrequency.ts";
+
 
 const keymap = new Map([
   ['A', 'D'], ['B', 'E'], ['C', 'F'], ['D', 'G'], ['E', 'H'],
@@ -41,7 +43,17 @@ export default function Monoalphabetic() {
         plaintext={applyKeymap(ciphertext, keymap)}
       />
 
-      <FrequencyChart counter={counter} />
+      <FrequencyChart
+        title="Ciphertext Frequency"
+        data={counter.getChartData()}
+        color="#8884d8"
+      />
+
+      <FrequencyChart
+        title="English Frequency"
+        data={ENGLISH_FREQUENCY}
+        color="#82ca9d"
+      />
 
       <Keymap />
 
