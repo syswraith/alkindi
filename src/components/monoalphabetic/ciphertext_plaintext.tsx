@@ -1,8 +1,15 @@
-import { useState } from "react";
+type CiphertextPlaintextProps = {
+  ciphertext: string,
+  setCiphertext: React.Dispatch<React.SetStateAction<string>>,
+  plaintext: string,
+}
 
-export default function CiphertextPlaintext() {
-  const [ciphertext, setCiphertext] = useState<string>("");
-  const [plaintext, setPlaintext] = useState<string>("");
+
+export default function CiphertextPlaintext({
+  ciphertext,
+  setCiphertext, 
+  plaintext
+}: CiphertextPlaintextProps) {
 
   return (
     <div className="border-2 rounded-xl p-3 grid grid-cols-2 gap-4">
@@ -15,7 +22,6 @@ export default function CiphertextPlaintext() {
           onInput={(e) => {
             const value = (e.target as HTMLDivElement).innerText;
             setCiphertext(value);
-            setPlaintext(value);
           }}
         ></div>
       </div>
