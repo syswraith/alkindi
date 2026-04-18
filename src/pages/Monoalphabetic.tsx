@@ -35,13 +35,15 @@ export default function Monoalphabetic() {
   const counter = useMemo(() => new Counter(ciphertext), [ciphertext]);
 
   return (
-    <div className="p-5 flex flex-col gap-4 h-screen">
+    <div className="p-3 flex flex-col gap-4 h-screen">
 
       <CiphertextPlaintext
         ciphertext={ciphertext}
         setCiphertext={setCiphertext}
         plaintext={applyKeymap(ciphertext, keymap)}
       />
+
+      <Keymap data={counter.getKeys()}/>
 
       <FrequencyChart
         title="Ciphertext Frequency"
@@ -55,7 +57,6 @@ export default function Monoalphabetic() {
         color="#82ca9d"
       />
 
-      <Keymap />
 
     </div>
   );

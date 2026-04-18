@@ -42,4 +42,10 @@ export default class Counter {
       }))
       .sort((a, b) => a.letter.charCodeAt(0) - b.letter.charCodeAt(0));
   }
+
+getKeys(): string[] {
+  return Array.from(this.map.keys())
+    .map(String)
+    .sort((a, b) => a.charCodeAt(0) - b.charCodeAt(0));
+}
 }
