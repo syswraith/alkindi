@@ -33,13 +33,13 @@ export default class Counter {
   getPercentMap(): CounterMap {
     return new Map(this.percentMap);
   }
-  
+
   getChartData() {
-  return [...this.map.entries()]
-    .map(([key, value]) => ({
-      letter: String(key),
-      count: value,
-    }))
-    .sort((a, b) => b.count - a.count);
-}
+    return [...this.map.entries()]
+      .map(([key, value]) => ({
+        letter: String(key),
+        count: value,
+      }))
+      .sort((a, b) => a.letter.charCodeAt(0) - b.letter.charCodeAt(0));
+  }
 }

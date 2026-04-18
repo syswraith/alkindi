@@ -1,6 +1,6 @@
 import CiphertextPlaintext from "../components/monoalphabetic/ciphertext_plaintext.tsx";
 import Keymap from "../components/monoalphabetic/keymap.tsx";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Counter from "../utilities/Counter.ts";
 import FrequencyChart from "../components/monoalphabetic/frequency_chart.tsx";
 
@@ -28,35 +28,23 @@ function applyKeymap(ciphertext: string, keymap: Map<string, string>) {
   return plaintext;
 }
 
-
-function generateCounter(ciphertext: string) {
-  let counter = new Counter(ciphertext)
-  return counter 
-}
-
 export default function Monoalphabetic() {
   const [ciphertext, setCiphertext] = useState<string>("");
+  const counter = useMemo(() => new Counter(ciphertext), [ciphertext]);
 
   return (
-    <>
-      {/* Encode decode button */}
+    <div className="p-5 flex flex-col gap-4 h-screen">
 
-      {/* Ciphertext Plaintext */}
       <CiphertextPlaintext
         ciphertext={ciphertext}
         setCiphertext={setCiphertext}
         plaintext={applyKeymap(ciphertext, keymap)}
       />
 
-      {/* Frequency Chart*/}
-      <FrequencyChart
-        counter={generateCounter(ciphertext)}
-      />
+      <FrequencyChart counter={counter} />
 
-      {/* Keymap */}
-      <Keymap
-      />
-      {/* Find and Replace */}
-    </>
+      <Keymap />
+
+    </div>
   );
 }
